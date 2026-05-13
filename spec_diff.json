@@ -1,0 +1,531 @@
+[
+  {
+    "change_id": "change_1",
+    "change_type": "added_parameter",
+    "endpoint_v1": "/accounts/{id}/balance",
+    "endpoint_v2": "/v2/accounts/{id}/balance",
+    "method": "get",
+    "location": "parameters.currency",
+    "before": null,
+    "after": {
+      "name": "currency",
+      "in": "query",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    "deterministic_evidence": "Parameter currency added"
+  },
+  {
+    "change_id": "change_2",
+    "change_type": "renamed_field",
+    "endpoint_v1": "/accounts/{id}/balance",
+    "endpoint_v2": "/v2/accounts/{id}/balance",
+    "method": "get",
+    "location": "response.body.balance",
+    "before": {
+      "name": "balance",
+      "schema": {
+        "type": "number",
+        "format": "float"
+      }
+    },
+    "after": {
+      "name": "available",
+      "schema": {
+        "type": "string",
+        "description": "decimal as string"
+      }
+    },
+    "deterministic_evidence": "Field balance renamed to available"
+  },
+  {
+    "change_id": "change_3",
+    "change_type": "type_changed",
+    "endpoint_v1": "/accounts/{id}/balance",
+    "endpoint_v2": "/v2/accounts/{id}/balance",
+    "method": "get",
+    "location": "response.body.available",
+    "before": {
+      "type": "number",
+      "format": "float"
+    },
+    "after": {
+      "type": "string"
+    },
+    "deterministic_evidence": "response.body.available type changed from number to string"
+  },
+  {
+    "change_id": "change_4",
+    "change_type": "added_required_field",
+    "endpoint_v1": "/accounts/{id}/balance",
+    "endpoint_v2": "/v2/accounts/{id}/balance",
+    "method": "get",
+    "location": "response.body.pending",
+    "before": null,
+    "after": {
+      "type": "string"
+    },
+    "deterministic_evidence": "Field pending added"
+  },
+  {
+    "change_id": "change_5",
+    "change_type": "renamed_endpoint",
+    "endpoint_v1": "/accounts/{id}/balance",
+    "endpoint_v2": "/v2/accounts/{id}/balance",
+    "method": null,
+    "location": "paths",
+    "before": "/accounts/{id}/balance",
+    "after": "/v2/accounts/{id}/balance",
+    "deterministic_evidence": "Mapped path /accounts/{id}/balance to /v2/accounts/{id}/balance via heuristic"
+  },
+  {
+    "change_id": "change_6",
+    "change_type": "removed_required_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "request.body.symbol",
+    "before": {
+      "type": "string"
+    },
+    "after": null,
+    "deterministic_evidence": "Field symbol removed"
+  },
+  {
+    "change_id": "change_7",
+    "change_type": "renamed_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "request.body.side",
+    "before": {
+      "name": "side",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "buy",
+          "sell"
+        ]
+      }
+    },
+    "after": {
+      "name": "direction",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "long",
+          "short"
+        ]
+      }
+    },
+    "deterministic_evidence": "Field side renamed to direction"
+  },
+  {
+    "change_id": "change_8",
+    "change_type": "enum_changed",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "request.body.direction",
+    "before": [
+      "buy",
+      "sell"
+    ],
+    "after": [
+      "long",
+      "short"
+    ],
+    "deterministic_evidence": "Enum changed from [\"buy\",\"sell\"] to [\"long\",\"short\"]"
+  },
+  {
+    "change_id": "change_9",
+    "change_type": "renamed_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "request.body.quantity",
+    "before": {
+      "name": "quantity",
+      "schema": {
+        "type": "number"
+      }
+    },
+    "after": {
+      "name": "size",
+      "schema": {
+        "type": "string",
+        "description": "decimal as string"
+      }
+    },
+    "deterministic_evidence": "Field quantity renamed to size"
+  },
+  {
+    "change_id": "change_10",
+    "change_type": "type_changed",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "request.body.size",
+    "before": {
+      "type": "number"
+    },
+    "after": {
+      "type": "string"
+    },
+    "deterministic_evidence": "request.body.size type changed from number to string"
+  },
+  {
+    "change_id": "change_11",
+    "change_type": "removed_required_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "request.body.stop_loss",
+    "before": {
+      "type": "number"
+    },
+    "after": null,
+    "deterministic_evidence": "Field stop_loss removed"
+  },
+  {
+    "change_id": "change_12",
+    "change_type": "added_required_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "request.body.instrument",
+    "before": null,
+    "after": {
+      "type": "string"
+    },
+    "deterministic_evidence": "Field instrument added"
+  },
+  {
+    "change_id": "change_13",
+    "change_type": "added_required_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "request.body.risk",
+    "before": null,
+    "after": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "stop_loss",
+            "take_profit"
+          ]
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "deterministic_evidence": "Field risk added"
+  },
+  {
+    "change_id": "change_14",
+    "change_type": "added_required_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "request.body.instrument",
+    "before": {
+      "required": false
+    },
+    "after": {
+      "required": true
+    },
+    "deterministic_evidence": "Field instrument is now required"
+  },
+  {
+    "change_id": "change_15",
+    "change_type": "added_required_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "request.body.direction",
+    "before": {
+      "required": false
+    },
+    "after": {
+      "required": true
+    },
+    "deterministic_evidence": "Field direction is now required"
+  },
+  {
+    "change_id": "change_16",
+    "change_type": "added_required_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "request.body.size",
+    "before": {
+      "required": false
+    },
+    "after": {
+      "required": true
+    },
+    "deterministic_evidence": "Field size is now required"
+  },
+  {
+    "change_id": "change_17",
+    "change_type": "added_required_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "request.body.risk",
+    "before": {
+      "required": false
+    },
+    "after": {
+      "required": true
+    },
+    "deterministic_evidence": "Field risk is now required"
+  },
+  {
+    "change_id": "change_18",
+    "change_type": "removed_required_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "response.body.trade_id",
+    "before": {
+      "type": "string"
+    },
+    "after": null,
+    "deterministic_evidence": "Field trade_id removed"
+  },
+  {
+    "change_id": "change_19",
+    "change_type": "removed_required_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "response.body.status",
+    "before": {
+      "type": "string"
+    },
+    "after": null,
+    "deterministic_evidence": "Field status removed"
+  },
+  {
+    "change_id": "change_20",
+    "change_type": "added_required_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "response.body.order_id",
+    "before": null,
+    "after": {
+      "type": "string"
+    },
+    "deterministic_evidence": "Field order_id added"
+  },
+  {
+    "change_id": "change_21",
+    "change_type": "added_required_field",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": "post",
+    "location": "response.body.state",
+    "before": null,
+    "after": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "rejected"
+      ]
+    },
+    "deterministic_evidence": "Field state added"
+  },
+  {
+    "change_id": "change_22",
+    "change_type": "renamed_endpoint",
+    "endpoint_v1": "/trades",
+    "endpoint_v2": "/v2/orders",
+    "method": null,
+    "location": "paths",
+    "before": "/trades",
+    "after": "/v2/orders",
+    "deterministic_evidence": "Mapped path /trades to /v2/orders via heuristic"
+  },
+  {
+    "change_id": "change_23",
+    "change_type": "renamed_endpoint",
+    "endpoint_v1": "/v1/ping",
+    "endpoint_v2": "/v2/ping",
+    "method": null,
+    "location": "paths",
+    "before": "/v1/ping",
+    "after": "/v2/ping",
+    "deterministic_evidence": "Mapped path /v1/ping to /v2/ping via heuristic"
+  },
+  {
+    "change_id": "change_24",
+    "change_type": "removed_required_field",
+    "endpoint_v1": "/v1/user/profile",
+    "endpoint_v2": "/v2/user",
+    "method": "get",
+    "location": "response.body.username",
+    "before": {
+      "type": "string"
+    },
+    "after": null,
+    "deterministic_evidence": "Field username removed"
+  },
+  {
+    "change_id": "change_25",
+    "change_type": "removed_required_field",
+    "endpoint_v1": "/v1/user/profile",
+    "endpoint_v2": "/v2/user",
+    "method": "get",
+    "location": "response.body.email",
+    "before": {
+      "type": "string"
+    },
+    "after": null,
+    "deterministic_evidence": "Field email removed"
+  },
+  {
+    "change_id": "change_26",
+    "change_type": "added_required_field",
+    "endpoint_v1": "/v1/user/profile",
+    "endpoint_v2": "/v2/user",
+    "method": "get",
+    "location": "response.body.details",
+    "before": null,
+    "after": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "deterministic_evidence": "Field details added"
+  },
+  {
+    "change_id": "change_27",
+    "change_type": "renamed_endpoint",
+    "endpoint_v1": "/v1/user/profile",
+    "endpoint_v2": "/v2/user",
+    "method": null,
+    "location": "paths",
+    "before": "/v1/user/profile",
+    "after": "/v2/user",
+    "deterministic_evidence": "Mapped path /v1/user/profile to /v2/user via heuristic"
+  },
+  {
+    "change_id": "change_28",
+    "change_type": "removed_required_field",
+    "endpoint_v1": "/v1/market/summary",
+    "endpoint_v2": "/v2/market/stats",
+    "method": "get",
+    "location": "response.body.index_value",
+    "before": {
+      "type": "number"
+    },
+    "after": null,
+    "deterministic_evidence": "Field index_value removed"
+  },
+  {
+    "change_id": "change_29",
+    "change_type": "removed_required_field",
+    "endpoint_v1": "/v1/market/summary",
+    "endpoint_v2": "/v2/market/stats",
+    "method": "get",
+    "location": "response.body.change",
+    "before": {
+      "type": "number"
+    },
+    "after": null,
+    "deterministic_evidence": "Field change removed"
+  },
+  {
+    "change_id": "change_30",
+    "change_type": "added_required_field",
+    "endpoint_v1": "/v1/market/summary",
+    "endpoint_v2": "/v2/market/stats",
+    "method": "get",
+    "location": "response.body.index",
+    "before": null,
+    "after": {
+      "type": "string"
+    },
+    "deterministic_evidence": "Field index added"
+  },
+  {
+    "change_id": "change_31",
+    "change_type": "added_required_field",
+    "endpoint_v1": "/v1/market/summary",
+    "endpoint_v2": "/v2/market/stats",
+    "method": "get",
+    "location": "response.body.daily_change",
+    "before": null,
+    "after": {
+      "type": "string"
+    },
+    "deterministic_evidence": "Field daily_change added"
+  },
+  {
+    "change_id": "change_32",
+    "change_type": "renamed_endpoint",
+    "endpoint_v1": "/v1/market/summary",
+    "endpoint_v2": "/v2/market/stats",
+    "method": null,
+    "location": "paths",
+    "before": "/v1/market/summary",
+    "after": "/v2/market/stats",
+    "deterministic_evidence": "Mapped path /v1/market/summary to /v2/market/stats via heuristic"
+  },
+  {
+    "change_id": "change_33",
+    "change_type": "parameter_required_changed",
+    "endpoint_v1": "/v1/orders/history",
+    "endpoint_v2": "/v2/history/orders",
+    "method": "get",
+    "location": "parameters.limit.required",
+    "after": true,
+    "deterministic_evidence": "Parameter limit required changed from undefined to true"
+  },
+  {
+    "change_id": "change_34",
+    "change_type": "added_parameter",
+    "endpoint_v1": "/v1/orders/history",
+    "endpoint_v2": "/v2/history/orders",
+    "method": "get",
+    "location": "parameters.offset",
+    "before": null,
+    "after": {
+      "name": "offset",
+      "in": "query",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    "deterministic_evidence": "Parameter offset added"
+  },
+  {
+    "change_id": "change_35",
+    "change_type": "renamed_endpoint",
+    "endpoint_v1": "/v1/orders/history",
+    "endpoint_v2": "/v2/history/orders",
+    "method": null,
+    "location": "paths",
+    "before": "/v1/orders/history",
+    "after": "/v2/history/orders",
+    "deterministic_evidence": "Mapped path /v1/orders/history to /v2/history/orders via heuristic"
+  }
+]

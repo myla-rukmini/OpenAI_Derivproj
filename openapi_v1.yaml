@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: TradeAPI
+  version: 1.0.0
+paths:
+  /accounts/{id}/balance:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balance:
+                    type: number
+                    format: float
+                  currency:
+                    type: string
+
+  /trades:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [symbol, side, quantity]
+              properties:
+                symbol:
+                  type: string
+                side:
+                  type: string
+                  enum: [buy, sell]
+                quantity:
+                  type: number
+                stop_loss:
+                  type: number
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  trade_id:
+                    type: string
+                  status:
+                    type: string
+
+  /v1/ping:
+    get:
+      responses:
+        '200':
+          description: OK
+
+  /v1/user/profile:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  email:
+                    type: string
+
+  /v1/market/summary:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  index_value:
+                    type: number
+                  change:
+                    type: number
+
+  /v1/orders/history:
+    get:
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string

@@ -1,0 +1,6 @@
+{
+  "name": "OpenAPI Pipeline Diff & Migration",
+  "description": "A replayable pipeline for OpenAPI contract diffing, compatibility classification, and migration aid generation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
